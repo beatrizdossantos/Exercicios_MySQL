@@ -1,0 +1,10 @@
+--QUANDO UMA NOVA ESPÉCIE É INSERIDA, AUTOMATICAMENTE UM MACHO E UMA FÊMEA SÃO CRIADOS NA TABELA ANIMAL
+USE db_Mundo
+
+CREATE TRIGGER insere_animais_auto
+ON tb_especie
+AFTER INSERT
+AS
+INSERT INTO tb_animal (sexo, idEspecie) SELECT 'F', idEspecie FROM INSERTED
+
+INSERT INTO tb_animal (sexo, idEspecie) SELECT 'M', idEspecie FROM INSERTED
